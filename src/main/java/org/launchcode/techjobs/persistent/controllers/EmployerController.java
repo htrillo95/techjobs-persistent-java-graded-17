@@ -2,6 +2,7 @@ package org.launchcode.techjobs.persistent.controllers;
 
 import jakarta.validation.Valid;
 import org.launchcode.techjobs.persistent.models.Employer;
+import org.launchcode.techjobs.persistent.models.data.EmployerRepository; //IMPORTED REPO
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +15,30 @@ import java.util.Optional;
 @RequestMapping("employers")
 public class EmployerController {
 
+    //TASK 2
+    //IMPORT EMPLOYER REPO
+    //ADD PRIVATE FIELD
+    @Autowired //DEPENDENCY
+    private EmployerRepository employerRepository;
+
+
+    //ADD INDEX METHOD
+    //RESPONDS @ /EMPLOYERS
+    @GetMapping
+    public String index(Model model) {
+        Iterable<Employer> employers = employerRepository.findAll();
+        model.addAttribute("employers", employers);
+        return "employers/index"; //TEMPLATE USE
+    }
+
+
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
         model.addAttribute(new Employer());
         return "employers/add";
     }
+
+
 
     @PostMapping("add")
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
@@ -28,13 +48,21 @@ public class EmployerController {
             return "employers/add";
         }
 
+        //ADDED, SAVE EMPLOYER OBJ USING EMPLOYER-REPO
+        employerRepository.save(newEmployer);
         return "redirect:";
     }
 
-    @GetMapping("view/{employerId}")
+
+
+
+    @GetMapping("view/{employerId}") //RENDERS PAGE TO VIEW EMPLOYER OBJ
     public String displayViewEmployer(Model model, @PathVariable int employerId) {
 
-        Optional optEmployer = null;
+        //REPLACED optEmployer w employerRepo
+        //****Optional optEmployer = null;****
+        Optional<Employer> optEmployer = employerRepository.findById(employerId);
+
         if (optEmployer.isPresent()) {
             Employer employer = (Employer) optEmployer.get();
             model.addAttribute("employer", employer);
