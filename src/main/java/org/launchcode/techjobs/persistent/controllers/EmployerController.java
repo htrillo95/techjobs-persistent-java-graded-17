@@ -24,7 +24,7 @@ public class EmployerController {
 
     //ADD INDEX METHOD
     //RESPONDS @ /EMPLOYERS
-    @GetMapping
+    @GetMapping ("/")
     public String index(Model model) {
         Iterable<Employer> employers = employerRepository.findAll();
         model.addAttribute("employers", employers);
