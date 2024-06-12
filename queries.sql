@@ -10,7 +10,11 @@
 
 
 
---Part 2
+--Part 2: Query to list the names of the employers in St. Louis City
+
+SELECT name FROM employer WHERE location = "St. Louis City";
+
+
 
 --Part 3
 

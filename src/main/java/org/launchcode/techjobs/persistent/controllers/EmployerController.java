@@ -59,7 +59,7 @@ public class EmployerController {
     @GetMapping("view/{employerId}") //RENDERS PAGE TO VIEW EMPLOYER OBJ
     public String displayViewEmployer(Model model, @PathVariable int employerId) {
 
-        //REPLACED optEmployer w employerRepo
+        //REPLACED optEmployer w employerRepo.findById
         //****Optional optEmployer = null;****
         Optional<Employer> optEmployer = employerRepository.findById(employerId);
 
