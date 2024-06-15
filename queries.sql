@@ -13,7 +13,9 @@
 --Part 2: Query to list the names of the employers in St. Louis City
 
 
-SELECT name FROM employer WHERE location = "St. Louis City";
+SELECT name
+FROM employer
+WHERE location = "St. Louis City";
 
 
 
@@ -24,3 +26,7 @@ DROP TABLE job;
 
 
 --Part 4
+
+SELECT * FROM skill
+LEFT JOIN job_skills on skill.id = job_skills.skills_id
+ORDER BY name ASC;

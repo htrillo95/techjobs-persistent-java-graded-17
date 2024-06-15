@@ -3,6 +3,8 @@ package org.launchcode.techjobs.persistent.controllers;
 import jakarta.validation.Valid;
 import org.launchcode.techjobs.persistent.models.Employer;
 import org.launchcode.techjobs.persistent.models.Job;
+import org.launchcode.techjobs.persistent.models.Skill;
+import org.launchcode.techjobs.persistent.models.data.JobRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -31,6 +33,12 @@ public class HomeController {
     @Autowired
     private SkillRepository skillRepository;
 
+    //ADD JobRepository
+    //ANNOTATE @Autowired
+    @Autowired
+    private JobRepository jobRepository;
+
+
     @RequestMapping("/")
     public String index(Model model) {
 
@@ -52,15 +60,20 @@ public class HomeController {
 
     @PostMapping("add")
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
-                                       Errors errors, Model model, @RequestParam int employerId) {
+                                       Errors errors, Model model, @RequestParam int employerId,
+                                    //TASK 4: ADD REQUEST PARAM BELOW
+                                    //PASS IN ATTRIBUTE SKILLS
+                                    @RequestParam List<Integer> skills) {
 
-        //IF ERRORS RE-ADDS
+        //IF ERROR
         if (errors.hasErrors()) {
 	    model.addAttribute("title", "Add Job");
-
         //ADD JOBS TO MODEL
         model.addAttribute("employers", employerRepository.findAll());
+        //ADD SKILLS TO MODEL
+            model.addAttribute("skills", skillRepository.findAll());
             return "add";
+
         }
 
         //RETRIEVE EMPLOYER OBJ BASED ON ID
@@ -68,16 +81,28 @@ public class HomeController {
         if (result.isPresent()) {
             Employer employer = result.get();
             newJob.setEmployer(employer); //SET EMPLOYER ON NEWJOB OBJ
-        }
 
+            //GET LIST OF SKILL OBJ BASED ON ID
+            List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
+            newJob.setSkills(skillObjs);
+
+            jobRepository.save(newJob);
+
+        }
 
         return "redirect:";
     }
 
     @GetMapping("view/{jobId}")
-    public String displayViewJob(Model model, @PathVariable int jobId) {
-
-            return "view";
+    public String displayViewJob(Model model, @PathVariable int jobId) { //FIND JOB BY ID
+        Optional<Job> result = jobRepository.findById(jobId); //USING REPO -
+                                                            // OPTIONAL IF JOB NOT FOUND
+        if (result.isPresent()) {
+            Job job = result.get();
+            model.addAttribute("job", job); //ADD TO MODEL
+            return "view"; //RETURN
+        } else {
+            return "redirect:/"; //HOMEPAGE IF NO RESULT
+        }
     }
-
 }
