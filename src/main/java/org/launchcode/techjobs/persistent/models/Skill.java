@@ -32,7 +32,7 @@ public class Skill extends AbstractEntity {
     }
 
 
-    //----------------------------------------
+    //----------------------------------------------
 
     //TASK 4
     //ADD JOB FIELD

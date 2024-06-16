@@ -39,7 +39,7 @@ public class EmployerController {
     }
 
 
-
+    //TASK 2 CONTINUED
     @PostMapping("add")
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
                                     Errors errors, Model model) {
@@ -55,12 +55,13 @@ public class EmployerController {
 
 
 
-
+    //TASK 2 FINAL
     @GetMapping("view/{employerId}") //RENDERS PAGE TO VIEW EMPLOYER OBJ
     public String displayViewEmployer(Model model, @PathVariable int employerId) {
 
         //REPLACED optEmployer w employerRepo.findById
-        //****Optional optEmployer = null;****
+
+        //****Optional <Employer> optEmployer = null;****
         Optional<Employer> optEmployer = employerRepository.findById(employerId);
 
         if (optEmployer.isPresent()) {

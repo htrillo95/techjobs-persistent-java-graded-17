@@ -47,6 +47,7 @@ public class HomeController {
         return "index";
     }
 
+
     @GetMapping("add")
     public String displayAddJobForm(Model model) {
 	model.addAttribute("title", "Add Job");
@@ -58,6 +59,7 @@ public class HomeController {
         return "add";
     }
 
+    //TASK 4 ------------------------------------------------
     @PostMapping("add")
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
                                        Errors errors, Model model, @RequestParam int employerId,
@@ -76,12 +78,14 @@ public class HomeController {
 
         }
 
+        //TASK 3 FINAL
         //RETRIEVE EMPLOYER OBJ BASED ON ID
         Optional<Employer> result = employerRepository.findById(employerId);
         if (result.isPresent()) {
             Employer employer = result.get();
-            newJob.setEmployer(employer); //SET EMPLOYER ON NEWJOB OBJ
+            newJob.setEmployer(employer); //SET EMPLOYER ON NEW JOB OBJ
 
+            //PREVIOUS OLD CODE
 //            //GET LIST OF SKILL OBJ BASED ON ID
 //            List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
 //            newJob.setSkills(skillObjs);
@@ -90,11 +94,11 @@ public class HomeController {
 
         }
 
-        //GET LIST OF SKILL OBJ BASED ON ID
+        //GET LIST OF SKILL OBJ BASED ON ID -- TASK 4 FINAL
         List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
-        newJob.setSkills(skillObjs);
+        newJob.setSkills(skillObjs); //SET ON NEW JOB OBJ
 
-        jobRepository.save(newJob);
+        jobRepository.save(newJob); //SAVE NEW OBJ
 
         return "redirect:";
     }

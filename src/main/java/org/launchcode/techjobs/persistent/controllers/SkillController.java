@@ -73,7 +73,7 @@ public class SkillController {
         //FIND SKILL BY ID FROM DB
         Optional<Skill> optSkill = skillRepository.findById(skillId);
 
-        //ADD TO MODEL & RETURN "skills/view" TEMP
+        //ADD TO MODEL & RETURN "skills/view" TEMPLATE
         if (optSkill.isPresent()) {
             Skill skill = optSkill.get();
             model.addAttribute("skill", skill);

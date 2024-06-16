@@ -12,7 +12,6 @@
 
 --Part 2: Query to list the names of the employers in St. Louis City
 
-
 SELECT name
 FROM employer
 WHERE location = "St. Louis City";
@@ -20,7 +19,6 @@ WHERE location = "St. Louis City";
 
 
 --Part 3 : Drop the job table
-
 
 DROP TABLE job;
 

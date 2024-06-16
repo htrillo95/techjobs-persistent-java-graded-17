@@ -8,6 +8,7 @@ import jakarta.persistence.ManyToOne;
 import java.util.ArrayList;
 import java.util.List;
 
+//TASK 3
 //EXTENDS
 @Entity
 public class Job extends AbstractEntity{
@@ -18,11 +19,11 @@ public class Job extends AbstractEntity{
     private Employer employer;
 
 
-    //PREVIOUS SKILLS FIELD
-    //private String skills;
+    //-------------------------------------------------
 
 
     //TASK 4
+    //PREVIOUSLY: private String skills;
     //CHANGE TO List<Skill>
     //ANNOTATE @ManyToMany
     @ManyToMany
@@ -36,12 +37,12 @@ public class Job extends AbstractEntity{
     //PREVIOUS ID & VALUES FIELD
     //UPDATE TO LIST OF SKILLS
     public Job(Employer anEmployer, List<Skill> someSkills) { //REFACTOR employer -> Employer
-        super();                                             //String Skil -> List<Skill>
+        super();                                             //String Skill -> List<Skill>
         this.employer = anEmployer;
         this.skills = someSkills;
     }
 
-    //GETTERS & SETTERS FOR EMPLOYER
+    //GETTERS & SETTERS FOR EMPLOYER - UPDATED
     public Employer getEmployer() {
         return employer;
     }
@@ -51,12 +52,7 @@ public class Job extends AbstractEntity{
     }
 
 
-    //PREVIOUS GETTER & SETTERS FOR SKILLS
-//    public String getSkills() {
-//        return skills;
-//    }
-
-    //UPDATED GETTER
+    //UPDATED GETTER & SETTERS FOR SKILLS
     public List<Skill> getSkills() {
         return skills;
     }
