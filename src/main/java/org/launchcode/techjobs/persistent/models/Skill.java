@@ -13,6 +13,7 @@ public class Skill extends AbstractEntity {
 
 
     //DESCRIPTION FIELD
+    //VALIDATION & LENGTH LIMITATION
     @NotBlank(message = "Description is required")
     @Size(max = 255, message = "Description must be 255 characters or less")
     private String description;
@@ -31,6 +32,7 @@ public class Skill extends AbstractEntity {
     }
 
 
+    //----------------------------------------
 
     //TASK 4
     //ADD JOB FIELD

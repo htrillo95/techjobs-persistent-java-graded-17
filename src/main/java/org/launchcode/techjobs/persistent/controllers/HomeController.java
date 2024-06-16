@@ -82,13 +82,19 @@ public class HomeController {
             Employer employer = result.get();
             newJob.setEmployer(employer); //SET EMPLOYER ON NEWJOB OBJ
 
-            //GET LIST OF SKILL OBJ BASED ON ID
-            List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
-            newJob.setSkills(skillObjs);
-
-            jobRepository.save(newJob);
+//            //GET LIST OF SKILL OBJ BASED ON ID
+//            List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
+//            newJob.setSkills(skillObjs);
+//
+//            jobRepository.save(newJob);
 
         }
+
+        //GET LIST OF SKILL OBJ BASED ON ID
+        List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
+        newJob.setSkills(skillObjs);
+
+        jobRepository.save(newJob);
 
         return "redirect:";
     }

@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 public class Employer extends AbstractEntity {
 
-    //NOT-BLANK/SIZE ANNOTATIONS EXTEND
+    //VALIDATION & LENGTH LIMITATION
     @NotBlank(message = "Location is required")
     @Size(max = 100, message = "Location must be 100 characters or less")
     private String location;
@@ -29,6 +29,8 @@ public class Employer extends AbstractEntity {
         this.location = location;
     }
 
+
+// ---------------------------------------
 
     //TASK 3: ADD JOBS FIELD
     @OneToMany

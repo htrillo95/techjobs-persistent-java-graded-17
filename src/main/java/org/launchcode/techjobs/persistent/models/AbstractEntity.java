@@ -11,7 +11,7 @@ import jakarta.validation.constraints.Size;
 import java.util.Objects;
 
 
-//TASK 2: ADD MAPPEDSUPERCLASS
+//TASK 2: ADD MAPPED-SUPERCLASS
 @MappedSuperclass
 public abstract class AbstractEntity {
 
@@ -20,7 +20,8 @@ public abstract class AbstractEntity {
     @GeneratedValue
     private int id;
 
-    //TASK 2: ADD
+    //TASK 2: ADD VALIDATION
+    //CANNOT BE EMPTY - LENGTH LIMITATIONS
     @NotBlank(message = "Name required")
     @Size(min = 1, max = 100, message = "Name between 1 and 100 characters")
     private String name;

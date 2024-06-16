@@ -7,3 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmployerRepository extends CrudRepository<Employer, Integer> {
 } //2 PARAMS: ENTITY TYPE & ID
+  //<Employer, Integer>
