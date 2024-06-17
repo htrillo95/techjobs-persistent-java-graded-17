@@ -23,7 +23,7 @@ WHERE location = "St. Louis City";
 DROP TABLE job;
 
 
---Part 4
+--Part 4 :
 
 SELECT * FROM skill
 LEFT JOIN job_skills on skill.id = job_skills.skills_id

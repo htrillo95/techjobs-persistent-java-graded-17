@@ -78,7 +78,7 @@ public class HomeController {
 
         }
 
-        //TASK 3 FINAL
+        //TASK 3 FINAL------------------------------------------
         //RETRIEVE EMPLOYER OBJ BASED ON ID
         Optional<Employer> result = employerRepository.findById(employerId);
         if (result.isPresent()) {
@@ -94,7 +94,7 @@ public class HomeController {
 
         }
 
-        //GET LIST OF SKILL OBJ BASED ON ID -- TASK 4 FINAL
+        //GET LIST OF SKILL OBJ BASED ON ID -------- TASK 4 FINAL ---------
         List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
         newJob.setSkills(skillObjs); //SET ON NEW JOB OBJ
 

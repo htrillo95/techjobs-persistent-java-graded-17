@@ -60,8 +60,8 @@ public class EmployerController {
     public String displayViewEmployer(Model model, @PathVariable int employerId) {
 
         //REPLACED optEmployer w employerRepo.findById
-
         //****Optional <Employer> optEmployer = null;****
+
         Optional<Employer> optEmployer = employerRepository.findById(employerId);
 
         if (optEmployer.isPresent()) {
